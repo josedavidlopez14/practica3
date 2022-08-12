@@ -1,0 +1,269 @@
+#include <iostream>
+#include <string.h>
+#include <fstream>
+
+using namespace std;
+
+//variable globales
+int n2=0;
+
+//Funciones
+int mayor0(string x);
+
+int main()
+{
+	ifstream archivo;
+	
+    int num[8];
+    int p1=0;
+    int z=0;
+    int r=0;
+    int mayor=0;
+    int n=0;
+    int b=n;
+    int h=0;
+    string p=" ";
+    string j1="";
+    string m="1asa";//01100110 01110101 01110100 01100010 01101111 01101100
+    int tam=0;
+    int nBits=0;
+    int c=0;
+     int j=0;
+    bool ban=false;
+    
+    /*archivo.open("Prueba.txt",ios::in);
+    
+    if(archivo.fail()){
+    	cout<<" ERROR 402!! \n";
+    	return(0);
+	}else{
+		cout<<"Abierto con exito!! \n";
+	}
+	
+	while(!archivo.eof()){
+		getline(archivo,m);
+		cout<<m;
+	}
+	
+	cout<<endl<<endl;
+	archivo.close();*/
+	
+    cout<<" Ingrese una semilla: ";
+	cin>>n2;
+	
+	tam=m.size();
+	n=n2;
+	
+    for(int i=0; i<tam;i++){//1,2,3,4
+        c=m[i];//115
+        if(c>=128){
+            p="1";
+            c=c-128;
+        }
+        else{
+            p="0";//0
+        }
+        if(c>=64){
+            p=p+"1";//01
+            c=c-64;//115-64
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=32){
+            p=p+"1";//011
+            c=c-32;//51-32
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=16){
+            p=p+"1";//0111
+            c=c-16;//19-16
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=8){
+            p=p+"1";
+            c=c-8;
+        }
+        else{
+            p=p+"0";//01110
+        }
+        if(c>=4){
+            p=p+"1";
+            c=c-4;
+        }
+        else{
+            p=p+"0";//011100
+        }
+        if(c>=2){
+            p=p+"1";//0111001
+            c=c-2;//3-2
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=1){
+            p=p+"1";//01110011
+            c=c-1;//1-1
+        }
+        else{
+            p=p+"0";
+        }
+        j1=j1+p;//j1=00110001,01100001,01110011,01100001
+
+    }
+    
+    cout<<j1<<endl;    
+    
+    
+    char t[n2];
+    //for(int i=0; i<8; i++){
+    cout<<"tam"<<tam<<endl;
+        while(n<((8*tam)+n2)){
+            for(int i=j; i<n;i++){//i=0,i<3:0,1,2,3
+                t[z]=j1[i];//t=0011
+                z=z+1;//1,2,3,4
+                
+                if(z==n2){
+                    z=0;//0
+                }
+
+            }
+            
+           // system("pause");
+            j=j+n2;//4
+                n=n+n2;//4+4=8,
+                
+            
+            mayor=mayor0(t);//mayor=2
+            
+            //cout<<t<<endl;
+            num[r]=mayor;//num[0]=2
+            //cout<<num[r]<<endl;
+            //cout<<mayor<<" mayor"<<endl<<endl;
+            r=r+1;//1
+            //cout<<r<<endl;
+
+            
+                    if(ban==false){
+            if(r==1){
+                for(int x=0;x<n2;x++){
+                if(t[x]=='0'){
+                    t[x]='1';
+                }
+                 else{
+                    t[x]='0';
+                }
+            }
+            }
+            ban=true;
+            }
+            
+              if(ban==true){  	
+				if(num[r-2]==0){
+					  
+                for(int y=1; y<n2; y++){//y<3;0
+                if(t[y]=='1' or t[y]=='0'){
+                    
+                    if(t[y]=='1'){
+                        t[y]='0';
+                    }
+                    else{
+                         t[y]='1';
+                    }
+                y=y+1;//1
+                }
+                if(t[y]!='1' and t[y]!='0'){
+                    t[y]='0';
+                }
+                
+                }
+            }
+            if(num[r-2]==1){
+                for(int y=2;y<n2;y++){
+                
+                if(t[y]=='1' or t[y]=='0'){
+                if(t[y]=='1'){
+                    t[y]='0';
+                }
+                else{
+                    t[y]='1';
+                }
+                y=y+2;
+                }
+                if(t[y]!='1' and t[y]!='0'){
+                    t[y]='0';
+                }
+                
+            }
+            }
+            if(num[r-2]==2){
+                //cout<<r-1<<" dentr"<<endl;
+                for(int y=0; y<n2; y++){
+                    if(t[y]=='1' or t[y]=='0'){
+                    if(t[y]=='1'){
+                    t[y]='0';
+                    }
+                    else{
+                        t[y]='1';
+                    }
+                }
+                if(t[y]!='1' and t[y]!='0'){
+                    t[y]='0';
+                }
+                }
+                
+            
+                //cout<<"entro igual a 2"<<endl;
+            }
+				}
+             
+            
+            
+            //cout<<endl<<"**************    "<<t<<"    *************"<<endl;
+            
+            
+            for(int h=0; h<n2; h++){
+                
+                cout<<t[h];
+            
+            }
+            
+            cout<<endl;
+        }
+          ofstream archivo("codificado.txt");
+        archivo<<p;     
+
+    return 0;
+}
+
+int mayor0(string x){//x=0011
+    int n1=0;
+    int n22=0;
+    int m0=0;
+    
+    for(int i=0; i<n2;i++){//0,1,2,3
+        if(x[i]=='0'){//1==0
+            n1=n1+1;//1,2
+        }
+        else{
+            n22=n22+1;//1,2
+        }
+        if(n1>n22){//2>1
+            m0=0;
+        }
+        if(n1<n22){
+            m0=1;
+        }
+        if(n1==n22){
+            m0=2;//2
+        }
+    }
+    
+    return m0;//retorna M0=2
+}
+
+

@@ -1,0 +1,149 @@
+#include <iostream>
+#include <string.h>
+#include <fstream>
+using namespace std;
+int mayor0(string x);
+
+int main()
+{
+    int num[8];
+    int z=0;
+    int r=0;
+    int mayor=0;
+    int n=0;
+    int b=n;
+    int h=0;
+    string p;
+    string j1="";
+    string m;
+    int c=0;
+     int j=0;
+     archivo.open("Prueba.txt",ios::in);
+    
+    if(archivo.fail()){
+    	cout<<" ERROR 402!! \n";
+    	return(0);
+	}else{
+		cout<<"Abierto con exito!! \n";
+	}
+	
+	while(!archivo.eof()){
+		getline(archivo,m);
+		cout<<m;
+	}
+	
+	cout<<endl<<endl;
+	archivo.close();
+	cout<<" Ingrese una semilla: ";
+	cin>>n;
+	
+	tam=m.size();
+	n=b;
+	
+    for(int i=0; i<tam;i++){
+        c=m[i];
+        if(c>=128){
+            p="1";
+            c=c-128;
+        }
+        else{
+            p="0";
+        }
+        if(c>=64){
+            p=p+"1";
+            c=c-64;
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=32){
+            p=p+"1";
+            c=c-32;
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=16){
+            p=p+"1";
+            c=c-16;
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=8){
+            p=p+"1";
+            c=c-8;
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=4){
+            p=p+"1";
+            c=c-4;
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=2){
+            p=p+"1";
+            c=c-2;
+        }
+        else{
+            p=p+"0";
+        }
+        if(c>=1){
+            p=p+"1";
+            c=c-1;
+        }
+        else{
+            p=p+"0";
+        }
+        j1=j1+p;
+        //cout<<j<<endl;
+        
+    }
+    cout<<j1<<endl;
+    char t[5];
+    int tam=4;
+        while(n<(8*tam)+b){
+            for(int i=j; i<n;i++){
+                
+                t[z]=j1[i];
+                z=z+1;
+                
+                if(z==b){
+                    z=0;
+                }
+
+            }
+            j=j+b;
+            n=n+b;
+
+            char temp;
+            for(int i = 0; i <2; i++) {
+            
+                temp = t[i];
+                t[i] = t[(b-1)-i];
+                t[(b-1)-i] = temp;
+                for(int h=b; h=0; h--){
+                    if(t[h]!='0' and t[h]!='1'){
+                        t[h]='0';
+                    }
+                }
+            }
+            for(int k=0; k<b; k++){
+                p=p+t[k];
+            }
+            cout<<endl;
+    }
+            
+       ofstream archivo2("codificado2.txt");
+        archivo2<<p;     
+            
+            
+            
+            
+        
+    
+   return 0;
+}
